@@ -1,0 +1,12 @@
+﻿@page
+@model WebApplicationRazorLibrary.Pages.NotFoundModel
+@{
+    ViewData["Title"] = "NotFound";
+}
+
+<h1 class="text-danger">The resource you are looking for can not be found</h1>
+@*you can use href instead of asp-page*@
+<a asp-page="/Books/Index" class="btn btn-primary">
+    Click here to navigate to home page
+</a>
+

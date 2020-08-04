@@ -1,0 +1,12 @@
+﻿@page
+@model WebApplicationRazorLibrary.Pages.Books.IndexModel
+@{
+    ViewData["Title"] = "Books";
+}
+
+<h1>@ViewData["Title"]</h1>
+@foreach (var item in Model.Books)
+{
+    <p>@item.Name</p>
+}
+

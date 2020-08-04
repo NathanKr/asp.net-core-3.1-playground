@@ -1,0 +1,14 @@
+﻿@*
+    expect someting like /Books/Details/1
+    access it via Request.RouteValues["id"] or better OnGet(string id)  
+*@
+
+@page "{id}"
+@model WebApplicationRazorLibrary.Pages.Books.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+Name: @Model.Details.Name
+Id : @Model.Details.Id
