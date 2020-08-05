@@ -1,0 +1,14 @@
+﻿@page
+@model WebApplicationRazorLibrary.Pages.Books.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<form method="post" action="/Books/Create">
+    <input type="text" name="Name" />
+    <input type="text" name="Author" />
+    <input type="number" name="Pages" />
+    <input type="submit" value="Add"/>
+</form>

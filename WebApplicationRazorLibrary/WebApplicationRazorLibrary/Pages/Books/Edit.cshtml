@@ -1,0 +1,24 @@
+﻿@page "{id}"
+@model WebApplicationRazorLibrary.Pages.Books.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+@*no need for asp-action="/Books/Edit" because it is all ready used to get this form*@
+@*todo nath - is it safe ??? currently i do not pass id but it is working because before it is accessed*@
+<form method="post">
+    <label>Name</label>
+    <input type="text" name="Name" value=@Model.Book.Name />
+    <br />
+    <label>Author</label>
+    <input type="text" name="Author" value=@Model.Book.Author />
+    <br />
+    <label>Pages</label>
+    <input type="number" name="Pages" value=@Model.Book.Pages />
+    <input type="submit" value="submit" />
+</form>
+
+<button class="btn btn-primary">Cancel</button>
+<button class="btn btn-primary">Update</button>

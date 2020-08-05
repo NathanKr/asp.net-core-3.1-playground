@@ -4,16 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.VisualBasic.CompilerServices;
 using WebApplicationRazorLibrary.Logic;
 using WebApplicationRazorLibrary.Models;
 
 namespace WebApplicationRazorLibrary.Pages.Books
 {
-    public class DetailsModel : PageModel
+    public class DeleteModel : PageModel
     {
-        public Book Details { get; set; }
-
         /*  
          * razor page MUST be decalred with @page "{id}"
          * id is same as Request.RouteValues["id"]
@@ -21,13 +18,15 @@ namespace WebApplicationRazorLibrary.Pages.Books
          */
         public IActionResult OnGet(string id)
         {
-            Details = BooksUtils.GetBooks().FirstOrDefault(book => book.Id == id);
-            if(Details == null)
+            int index = BooksUtils.GetBooks().FindIndex(book => book.Id == id);
+            if(index != -1)
             {
-               return RedirectToPage("/NotFound");
+                BooksUtils.GetBooks().RemoveAt(index);
+                return RedirectToPage("/Books/Index");
             }
-
-            return Page();
+            
+            
+            return RedirectToPage("/NotFound");
         }
     }
 }

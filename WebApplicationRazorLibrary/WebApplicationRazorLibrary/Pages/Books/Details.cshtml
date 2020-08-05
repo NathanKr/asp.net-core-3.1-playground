@@ -1,6 +1,6 @@
 ﻿@*
     expect someting like /Books/Details/1
-    access it via Request.RouteValues["id"] or better OnGet(string id)  
+    access it via Request.RouteValues["id"] or better OnGet(string id)
 *@
 
 @page "{id}"
@@ -10,5 +10,7 @@
 }
 
 <h1>Details</h1>
-Name: @Model.Details.Name
-Id : @Model.Details.Id
+<p>Id : @Model.Details.Id</p>
+<p>Name: @Model.Details.Name</p>
+<p>Author : @Model.Details.Author</p>
+<p>Pages : @Model.Details.Pages</p>
