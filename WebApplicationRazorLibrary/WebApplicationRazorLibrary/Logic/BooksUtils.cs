@@ -16,7 +16,7 @@ namespace WebApplicationRazorLibrary.Logic
             };
         public static List<Book> GetBooks()
         {
-            return m_books; 
+            return m_books;  
         }
 
         private static string getUniqueId()
