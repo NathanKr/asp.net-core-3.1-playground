@@ -2,23 +2,27 @@
 @model WebApplicationRazorLibrary.Pages.Books.IndexModel
 @{
     ViewData["Title"] = "Books";
-    string urlDetails , urlDelete, urlEdit;
 }
 
+<table class="table table-striped">
+    <tbody>
 
-<h1>@ViewData["Title"]</h1>
-@foreach (var item in Model.Books)
-{
-    urlDetails = "/Books/Details/" + item.Id;
-    urlDelete = "/Books/Delete/" + item.Id;
-    urlEdit = "/Books/Edit/" + item.Id;
-<div>
-    <span>@item.Name</span>
-    @*todo nath why asp-Page not working ??????????*@
-    <a asp-page="/Books/Details" asp-route-ID=@item.Id class="btn btn-primary">Details</a>
-    <a asp-page="/Books/Delete" asp-route-ID=@item.Id class="btn btn-primary">Delete</a>
-    <a asp-page="/Books/Edit" asp-route-ID=@item.Id class="btn btn-primary">Edit</a>
-    <br /><br />
-</div>
-}
+        @foreach (var item in Model.Books)
+        {
 
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <a asp-page="/Books/Details" asp-route-ID=@item.Id class="btn btn-primary">Details</a>
+                </td>
+                <td>
+                    <a asp-page="/Books/Delete" asp-route-ID=@item.Id class="btn btn-primary">Delete</a>
+                </td>
+                <td>
+                    <a asp-page="/Books/Edit" asp-route-ID=@item.Id class="btn btn-primary">Edit</a>
+                </td>
+            </tr>
+
+        }
+    <tbody>
+</table>

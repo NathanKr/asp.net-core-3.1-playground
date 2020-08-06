@@ -14,17 +14,22 @@ namespace WebApplicationRazorLibrary.Pages.Books
         public string Id { get; set; }
         public Book Book { get; set; }
 
-        //todo nath , i am not passing id in client , why do i get it in book ??
         public IActionResult OnPost(Book book)
         {
-            int index = BooksUtils.GetBooks().FindIndex(book => book.Id == book.Id);
-            if (index != -1)
+            if (ModelState.IsValid)
             {
-                BooksUtils.GetBooks()[index] = book;
-                return RedirectToPage("/Books/Index");
+                int index = BooksUtils.GetBooks().FindIndex(book => book.Id == book.Id);
+                if (index != -1)
+                {
+                    BooksUtils.GetBooks()[index] = book;
+                    return RedirectToPage("/Books/Index");
+                }
+
+                return RedirectToPage("/NotFound");
             }
 
-            return RedirectToPage("/NotFound");
+            Book = book;
+            return Page();
         }
 
         public IActionResult OnGet(string id)

@@ -9,8 +9,18 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-<p>Id : @Model.Details.Id</p>
-<p>Name: @Model.Details.Name</p>
-<p>Author : @Model.Details.Author</p>
-<p>Pages : @Model.Details.Pages</p>
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            Book details
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@Model.Details.Name</h5>
+            <p>@Model.Details.Author</p>
+            <p>
+                <span>@Model.Details.Pages</span>
+                <span>pages</span>
+            </p>
+            <p>@Model.Details.Category</p>
+
+        </div>
+    </div>

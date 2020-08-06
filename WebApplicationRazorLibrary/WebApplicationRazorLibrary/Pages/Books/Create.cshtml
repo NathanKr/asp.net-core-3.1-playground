@@ -1,14 +1,45 @@
 ﻿@page
 @model WebApplicationRazorLibrary.Pages.Books.CreateModel
+@using WebApplicationRazorLibrary.Logic
+
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<form method="post" action="/Books/Create">
-    <input type="text" name="Name" />
-    <input type="text" name="Author" />
-    <input type="number" name="Pages" />
-    <input type="submit" value="Add"/>
+@*no need for asp-action="/Books/Edit" because it is all ready used to get this form*@
+@*asp-for is doing an amazing job for inpu here !!!!!!!!!!!!! :
+    it create AUTOMATICALLY : an id which label refer to , a name , a value !!!!!!!!!*@
+@* todo nath -can i merge edit and create as done by the indian *@
+<form method="post">
+    <div class="form-group row">
+        <label asp-for="@Model.Book.Name" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="@Model.Book.Name" class="form-control" />
+            <span asp-validation-for="@Model.Book.Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.Book.Author" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="@Model.Book.Author" class="form-control" />
+            <span asp-validation-for="@Model.Book.Author" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.Book.Pages" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="@Model.Book.Pages" class="form-control" type="number" />
+            <span asp-validation-for="@Model.Book.Pages" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.Book.Category" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <select asp-for="@Model.Book.Category" asp-items="Html.GetEnumSelectList<Category>()" class="custom-select"></select>
+            <span asp-validation-for="@Model.Book.Category" class="text-danger"></span>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Create" />
 </form>
+
