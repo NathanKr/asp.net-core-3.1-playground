@@ -16,7 +16,7 @@ namespace WebApplicationRazorLibrary.Pages.Books
          * id is same as Request.RouteValues["id"]
          * we have changed OnGet return code to IActionResult to handle return
          */
-        public IActionResult OnGet(string id)
+        public IActionResult OnGet(long id)
         {
             int index = BooksUtils.GetBooks().FindIndex(book => book.Id == id);
             if(index != -1)

@@ -9,7 +9,7 @@ namespace WebApplicationRazorLibrary.Models
 {
     public class Book
     {
-        public string Id{ get; set; }
+        public long Id{ get; set; }
 
         [Required]
         public string Name { get; set; }

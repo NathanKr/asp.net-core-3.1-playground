@@ -19,7 +19,7 @@ namespace WebApplicationRazorLibrary.Pages.Books
          * id is same as Request.RouteValues["id"]
          * we have changed OnGet return code to IActionResult to handle return
          */
-        public IActionResult OnGet(string id)
+        public IActionResult OnGet(long id)
         {
             Details = BooksUtils.GetBooks().FirstOrDefault(book => book.Id == id);
             if(Details == null)

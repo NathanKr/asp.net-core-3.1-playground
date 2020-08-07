@@ -11,7 +11,7 @@ namespace WebApplicationRazorLibrary.Pages.Books
 {
     public class EditModel : PageModel
     {
-        public string Id { get; set; }
+        public long Id { get; set; }
         public Book Book { get; set; }
 
         public IActionResult OnPost(Book book)
@@ -32,7 +32,7 @@ namespace WebApplicationRazorLibrary.Pages.Books
             return Page();
         }
 
-        public IActionResult OnGet(string id)
+        public IActionResult OnGet(long id)
         {
             Id = id;
             int index = BooksUtils.GetBooks().FindIndex(book => book.Id == id);
