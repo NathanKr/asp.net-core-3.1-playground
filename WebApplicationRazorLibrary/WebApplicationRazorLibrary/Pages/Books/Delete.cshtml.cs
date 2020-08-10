@@ -26,10 +26,9 @@ namespace WebApplicationRazorLibrary.Pages.Books
          */
         public IActionResult OnGet(long id)
         {
-            int index = m_iBooksStorage.GetBooks().FindIndex(book => book.Id == id);
-            if(index != -1)
+            Book book = m_iBooksStorage.Delete(id);
+            if(book != null)
             {
-                m_iBooksStorage.GetBooks().RemoveAt(index);
                 return RedirectToPage("/Books/Index");
             }
             

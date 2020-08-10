@@ -17,7 +17,7 @@ namespace WebApplicationRazorLibrary.Services
 
         // --- return IEnumerable is nice but later you need to supply API so return List
         // --- todo nath : can i make it return IEnumerable ??
-        public List<Book> GetBooks()
+        public IEnumerable<Book> GetAll()
         {
             return m_books;
         }
@@ -28,10 +28,43 @@ namespace WebApplicationRazorLibrary.Services
         }
 
         // --- id is ignored , its self computed . using db you get id from there
-        public void Add(Book book)
+        public Book Add(Book book)
         {
             book.Id = getUniqueId();
-            m_books.Add(book);
+            m_books.Add(book);// --- add in the end
+            return m_books.Last();
+        }
+
+        public Book Get(long id)
+        {
+            // --- i provide reference to the repository but its non issue because its mock , in gebneral access to repo is only by API
+            return m_books.FirstOrDefault(book => book.Id == id);
+        }
+
+        
+
+        public Book Update(Book updatedBook)
+        {
+            // --- i provide reference to the repository but its non issue because its mock , in gebneral access to repo is only by API
+            int index = m_books.FindIndex(book => updatedBook.Id == book.Id);
+            if (index != -1)
+            {
+                m_books[index] = updatedBook;
+                return m_books[index];
+            }
+
+            return null;
+        }
+
+        public Book Delete(long id)
+        {
+            Book book = Get(id);
+            if (book != null)
+            {
+                m_books.Remove(book);
+            }
+
+            return book;
         }
     }
 }

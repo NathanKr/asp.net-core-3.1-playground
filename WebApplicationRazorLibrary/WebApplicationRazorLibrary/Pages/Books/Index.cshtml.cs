@@ -19,7 +19,7 @@ namespace WebApplicationRazorLibrary.Pages.Books
             m_iBooksStorage = iBooksStorage;
         }
 
-        public List<Book> Books { get { return m_iBooksStorage.GetBooks(); } }
+        public IEnumerable<Book> Books { get { return m_iBooksStorage.GetAll(); } }
         public void OnGet()
         {
 

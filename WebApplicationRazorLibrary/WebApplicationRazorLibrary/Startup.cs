@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using WebApplicationRazorLibrary.Logic;
 using WebApplicationRazorLibrary.Services;
 
 namespace WebApplicationRazorLibrary
@@ -27,6 +30,7 @@ namespace WebApplicationRazorLibrary
         {
             services.AddRazorPages();
             services.AddSingleton<IBooksRepository, MockBooksRepository>();
+            services.AddDbContextPool<AppDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("LibraryDbConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

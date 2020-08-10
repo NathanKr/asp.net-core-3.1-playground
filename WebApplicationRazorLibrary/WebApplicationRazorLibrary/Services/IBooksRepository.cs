@@ -8,7 +8,11 @@ namespace WebApplicationRazorLibrary.Services
 {
     public interface IBooksRepository
     {
-        List<Book> GetBooks();
-        void Add(Book book);
+        IEnumerable<Book> GetAll();
+        Book Get(long id);
+        Book Add(Book book);
+        Book Update(Book book);
+        Book Delete(long id);
+
     }
 }

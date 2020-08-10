@@ -31,7 +31,7 @@ namespace WebApplicationRazorLibrary.Pages.Books
          */
         public IActionResult OnGet(long id)
         {
-            Details = m_iBooksStorage.GetBooks().FirstOrDefault(book => book.Id == id);
+            Details = m_iBooksStorage.Get(id);
             if(Details == null)
             {
                return RedirectToPage("/NotFound");

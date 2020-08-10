@@ -29,10 +29,9 @@ namespace WebApplicationRazorLibrary.Pages.Books
         {
             if (ModelState.IsValid)
             {
-                int index = m_iBooksStorage.GetBooks().FindIndex(book => book.Id == book.Id);
-                if (index != -1)
+                if (m_iBooksStorage.Get(book.Id) != null)
                 {
-                    m_iBooksStorage.GetBooks()[index] = book;
+                    m_iBooksStorage.Update(book);
                     return RedirectToPage("/Books/Index");
                 }
 
@@ -46,10 +45,9 @@ namespace WebApplicationRazorLibrary.Pages.Books
         public IActionResult OnGet(long id)
         {
             Id = id;
-            int index = m_iBooksStorage.GetBooks().FindIndex(book => book.Id == id);
-            if (index != -1)
+            Book = m_iBooksStorage.Get(id);
+            if (Book != null)
             {
-                Book = m_iBooksStorage.GetBooks()[index];
                 return Page();
             }
 
