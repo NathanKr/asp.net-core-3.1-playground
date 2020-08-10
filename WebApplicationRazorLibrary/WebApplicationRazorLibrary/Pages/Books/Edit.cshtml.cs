@@ -6,22 +6,33 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebApplicationRazorLibrary.Logic;
 using WebApplicationRazorLibrary.Models;
+using WebApplicationRazorLibrary.Services;
 
 namespace WebApplicationRazorLibrary.Pages.Books
 {
     public class EditModel : PageModel
     {
-        public long Id { get; set; }
-        public Book Book { get; set; }
+        private IBooksRepository m_iBooksStorage;
+
+        public EditModel(IBooksRepository iBooksStorage)
+        {
+            m_iBooksStorage = iBooksStorage;
+        }
+
+        // --- i do not want Id to be set outside of the class
+        public long Id { get; private set; }
+
+        // --- i do not want Book to be set outside of the class
+        public Book Book { get; private set; }
 
         public IActionResult OnPost(Book book)
         {
             if (ModelState.IsValid)
             {
-                int index = BooksUtils.GetBooks().FindIndex(book => book.Id == book.Id);
+                int index = m_iBooksStorage.GetBooks().FindIndex(book => book.Id == book.Id);
                 if (index != -1)
                 {
-                    BooksUtils.GetBooks()[index] = book;
+                    m_iBooksStorage.GetBooks()[index] = book;
                     return RedirectToPage("/Books/Index");
                 }
 
@@ -35,10 +46,10 @@ namespace WebApplicationRazorLibrary.Pages.Books
         public IActionResult OnGet(long id)
         {
             Id = id;
-            int index = BooksUtils.GetBooks().FindIndex(book => book.Id == id);
+            int index = m_iBooksStorage.GetBooks().FindIndex(book => book.Id == id);
             if (index != -1)
             {
-                Book = BooksUtils.GetBooks()[index];
+                Book = m_iBooksStorage.GetBooks()[index];
                 return Page();
             }
 

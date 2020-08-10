@@ -23,5 +23,6 @@ namespace WebApplicationRazorLibrary.Models
 
         [Required]
         public Category Category { get; set; }
+
     }
 }

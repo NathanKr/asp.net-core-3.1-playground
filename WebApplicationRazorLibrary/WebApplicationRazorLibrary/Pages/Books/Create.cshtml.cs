@@ -6,18 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebApplicationRazorLibrary.Logic;
 using WebApplicationRazorLibrary.Models;
+using WebApplicationRazorLibrary.Services;
 
 namespace WebApplicationRazorLibrary.Pages.Books
 {
     public class CreateModel : PageModel
     {
-        public Book Book { get; set; }
+        IBooksRepository m_iBooksStorage;
+
+        // --- i do not want Book to be set outside of the class
+        public Book Book { get; private set; }
+
+        public CreateModel(IBooksRepository iBooksStorage)
+        {
+            m_iBooksStorage = iBooksStorage;
+        }
 
         public IActionResult OnPost(Book book)
         {
             if (ModelState.IsValid)
             {
-                BooksUtils.Add(book);
+                m_iBooksStorage.Add(book);
                 return RedirectToPage("/Books/Index");
             }
 

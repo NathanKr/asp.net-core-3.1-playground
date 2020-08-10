@@ -1,31 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplicationRazorLibrary.Logic;
 using WebApplicationRazorLibrary.Models;
 
-namespace WebApplicationRazorLibrary.Logic
+namespace WebApplicationRazorLibrary.Services
 {
-    public class BooksUtils
+    public class MockBooksRepository : IBooksRepository
     {
-        static List<Book> m_books = new List<Book>{
+        List<Book> m_books = new List<Book>{
                 new Book { Id = 1, Name = "Book1" , Author = "Author1" , Pages=111 , Category=Category.Classics} ,
                 new Book { Id = 2, Name = "Book2" , Author = "Author2" , Pages=222 , Category=Category.Detective},
                 new Book { Id = 3, Name = "Book3" , Author = "Author3" , Pages=333 , Category=Category.Horror}
             };
-        public static List<Book> GetBooks()
+
+        // --- return IEnumerable is nice but later you need to supply API so return List
+        // --- todo nath : can i make it return IEnumerable ??
+        public List<Book> GetBooks()
         {
-            return m_books;   
+            return m_books;
         }
 
-        private static long getUniqueId()
+        private long getUniqueId()
         {
-            return m_books.Max(it => it.Id)+1;
+            return m_books.Max(it => it.Id) + 1;
         }
 
-        // --- id is ignired , its self computed . using db you get id from there
-        public static void Add(Book book)
+        // --- id is ignored , its self computed . using db you get id from there
+        public void Add(Book book)
         {
             book.Id = getUniqueId();
             m_books.Add(book);

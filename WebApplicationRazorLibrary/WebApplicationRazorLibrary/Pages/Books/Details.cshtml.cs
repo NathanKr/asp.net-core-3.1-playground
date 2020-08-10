@@ -7,12 +7,22 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.VisualBasic.CompilerServices;
 using WebApplicationRazorLibrary.Logic;
 using WebApplicationRazorLibrary.Models;
+using WebApplicationRazorLibrary.Services;
 
 namespace WebApplicationRazorLibrary.Pages.Books
 {
     public class DetailsModel : PageModel
     {
-        public Book Details { get; set; }
+        private IBooksRepository m_iBooksStorage;
+
+        public DetailsModel(IBooksRepository iBooksStorage)
+        {
+            m_iBooksStorage = iBooksStorage;
+        }
+
+
+        // --- i do not want Details to be set outside of the class
+        public Book Details { get; private set; }
 
         /*  
          * razor page MUST be decalred with @page "{id}"
@@ -21,7 +31,7 @@ namespace WebApplicationRazorLibrary.Pages.Books
          */
         public IActionResult OnGet(long id)
         {
-            Details = BooksUtils.GetBooks().FirstOrDefault(book => book.Id == id);
+            Details = m_iBooksStorage.GetBooks().FirstOrDefault(book => book.Id == id);
             if(Details == null)
             {
                return RedirectToPage("/NotFound");
