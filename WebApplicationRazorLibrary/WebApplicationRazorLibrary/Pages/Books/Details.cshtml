@@ -9,18 +9,6 @@
     ViewData["Title"] = "Details";
 }
 
-    <div class="card" style="width: 18rem;">
-        <div class="card-header">
-            Book details
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">@Model.Details.Name</h5>
-            <p>@Model.Details.Author</p>
-            <p>
-                <span>@Model.Details.Pages</span>
-                <span>pages</span>
-            </p>
-            <p>@Model.Details.Category</p>
+<partial name="_BookDetailsPartial" model="@Model.Details"/>
 
-        </div>
-    </div>
+    

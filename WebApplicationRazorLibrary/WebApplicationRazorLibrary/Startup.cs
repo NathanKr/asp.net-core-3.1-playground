@@ -29,8 +29,16 @@ namespace WebApplicationRazorLibrary
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddSingleton<IBooksRepository, MockBooksRepository>();
-            services.AddDbContextPool<AppDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("LibraryDbConnection")));
+            services.AddDbContextPool<AppDbContext>(option => {
+                option.UseSqlServer(Configuration.GetConnectionString("LibraryDbConnection"));
+                // --- you can remove this after fix of Book.Update exception for SqlBooksRepository
+                option.EnableSensitiveDataLogging(true);
+            });
+            // --- uncomment next line to use mock
+            // --- services.AddSingleton<IBooksRepository, MockBooksRepository>();
+
+            // --- use AddScoped for sql server
+            services.AddScoped<IBooksRepository, SqlBooksRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

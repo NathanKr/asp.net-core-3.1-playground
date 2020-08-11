@@ -1,0 +1,19 @@
+﻿@using WebApplicationRazorLibrary.Models
+
+@model Book
+
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+        Book details
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p>@Model.Author</p>
+        <p>
+            <span>@Model.Pages</span>
+            <span>pages</span>
+        </p>
+        <p>@Model.Category</p>
+
+    </div>
+</div>

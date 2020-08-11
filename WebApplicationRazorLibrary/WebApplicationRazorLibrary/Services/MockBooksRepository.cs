@@ -7,6 +7,8 @@ using WebApplicationRazorLibrary.Models;
 
 namespace WebApplicationRazorLibrary.Services
 {
+    // --- MockBooksRepository does not obey  IBooksRepository in the sense that you can change the repository via the return object
+    // --- but this is only mock so i did not put effor on this . it is not possible in SqlBooksRepository
     public class MockBooksRepository : IBooksRepository
     {
         List<Book> m_books = new List<Book>{
@@ -15,8 +17,6 @@ namespace WebApplicationRazorLibrary.Services
                 new Book { Id = 3, Name = "Book3" , Author = "Author3" , Pages=333 , Category=Category.Horror}
             };
 
-        // --- return IEnumerable is nice but later you need to supply API so return List
-        // --- todo nath : can i make it return IEnumerable ??
         public IEnumerable<Book> GetAll()
         {
             return m_books;
