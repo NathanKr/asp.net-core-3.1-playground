@@ -1,0 +1,24 @@
+﻿@using WebApplicationRazorLibrary.Models;
+
+@model IEnumerable<BooksCountByCategory>
+
+<h3>Book count per category</h3>
+
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>Category</th>
+            <th>Book Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BooksCountByCategory item in @Model)
+        {
+            <tr>
+                <td>@item.Category</td>
+                <td>@item.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

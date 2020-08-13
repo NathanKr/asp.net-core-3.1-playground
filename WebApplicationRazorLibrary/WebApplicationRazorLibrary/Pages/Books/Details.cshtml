@@ -9,5 +9,11 @@
     ViewData["Title"] = "Details";
 }
 
-<partial name="_BookDetailsPartial" model="@Model.Book" />
+    <div class="col-sm-8">
+        @await Component.InvokeAsync("BooksCountByCategory")
+        <partial name="_BookDetailsPartial" model="@Model.Book" />
+    </div>
+
+
+
 
