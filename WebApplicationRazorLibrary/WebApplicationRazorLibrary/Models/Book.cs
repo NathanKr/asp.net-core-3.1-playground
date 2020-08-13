@@ -22,7 +22,7 @@ namespace WebApplicationRazorLibrary.Models
         public uint Pages { get; set; }
 
         [Required]
-        public Category Category { get; set; }
+        public BooksCategory Category { get; set; }
 
     }
 }

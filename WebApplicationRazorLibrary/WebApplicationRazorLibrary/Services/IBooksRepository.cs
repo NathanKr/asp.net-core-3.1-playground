@@ -10,11 +10,10 @@ namespace WebApplicationRazorLibrary.Services
     public interface IBooksRepository
     {
         IEnumerable<Book> GetAll();
-        Book Get(long id);
+        Book GetBook(long id);
         // --- input id is ignored , it is computed in Add
-        Book Add(Book book);
-        Book Update(Book book);
-        Book Delete(long id);
-
+        Book AddBook(Book book);
+        Book UpdateBook(Book book);
+        Book DeleteBook(long id);
     }
 }

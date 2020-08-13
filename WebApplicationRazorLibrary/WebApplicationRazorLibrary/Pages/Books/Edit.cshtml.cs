@@ -12,11 +12,11 @@ namespace WebApplicationRazorLibrary.Pages.Books
 {
     public class EditModel : PageModel
     {
-        private IBooksRepository m_iBooksStorage;
+        private IBooksRepository m_booksRepo;
 
-        public EditModel(IBooksRepository iBooksStorage)
+        public EditModel(IBooksRepository booksRepo)
         {
-            m_iBooksStorage = iBooksStorage;
+            m_booksRepo = booksRepo;
         }
 
         // --- i do not want Id to be set outside of the class
@@ -29,23 +29,23 @@ namespace WebApplicationRazorLibrary.Pages.Books
         {
             if (ModelState.IsValid)
             {
-                if (m_iBooksStorage.Get(book.Id) != null)
+                if (m_booksRepo.GetBook(book.Id) != null)
                 {
-                    m_iBooksStorage.Update(book);
+                    m_booksRepo.UpdateBook(book);
                     return RedirectToPage("/Books/Index");
                 }
 
                 return RedirectToPage("/NotFound");
             }
 
-            Book = book;
+            //Book = book; looks like it is not needed
             return Page();
         }
 
         public IActionResult OnGet(long id)
         {
             Id = id;
-            Book = m_iBooksStorage.Get(id);
+            Book = m_booksRepo.GetBook(id);
             if (Book != null)
             {
                 return Page();

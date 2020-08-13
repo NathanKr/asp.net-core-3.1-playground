@@ -12,25 +12,25 @@ namespace WebApplicationRazorLibrary.Pages.Books
 {
     public class DeleteModel : PageModel
     {
-        private IBooksRepository m_iBooksStorage;
+        private IBooksRepository m_booksRepo;
 
         //[BindProperty] todo nath , should i use it
         public Book Book { get; private set; }
-        public DeleteModel(IBooksRepository iBooksStorage)
+        public DeleteModel(IBooksRepository booksRepo)
         {
-            m_iBooksStorage = iBooksStorage;
+            m_booksRepo = booksRepo;
         }
 
         // --- todo nath , where does he get id
         public IActionResult OnPost(long id)
         {
            // long id = Book.Id;
-            if (m_iBooksStorage.Get(id) == null)
+            if (m_booksRepo.GetBook(id) == null)
             {
                 return RedirectToPage("/NotFound");
             }
 
-            m_iBooksStorage.Delete(id);
+            m_booksRepo.DeleteBook(id);
             return RedirectToPage("/Books/Index");
         }
             /*  
@@ -40,7 +40,7 @@ namespace WebApplicationRazorLibrary.Pages.Books
              */
             public IActionResult OnGet(long id)
         {
-            Book = m_iBooksStorage.Get(id);
+            Book = m_booksRepo.GetBook(id);
             if (Book == null)
             {
                 return RedirectToPage("/NotFound");

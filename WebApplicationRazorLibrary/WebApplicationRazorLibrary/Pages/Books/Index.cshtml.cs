@@ -12,14 +12,14 @@ namespace WebApplicationRazorLibrary.Pages.Books
 {
     public class IndexModel : PageModel
     {
-        private IBooksRepository m_iBooksStorage;
+        private IBooksRepository m_booksRepo;
 
-        public IndexModel(IBooksRepository iBooksStorage)
+        public IndexModel(IBooksRepository booksRepo)
         {
-            m_iBooksStorage = iBooksStorage;
+            m_booksRepo = booksRepo;
         }
 
-        public IEnumerable<Book> Books { get { return m_iBooksStorage.GetAll(); } }
+        public IEnumerable<Book> Books { get { return m_booksRepo.GetAll(); } }
         public void OnGet()
         {
 

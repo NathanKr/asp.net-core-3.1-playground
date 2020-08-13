@@ -12,9 +12,9 @@ namespace WebApplicationRazorLibrary.Services
     public class MockBooksRepository : IBooksRepository
     {
         List<Book> m_books = new List<Book>{
-                new Book { Id = 1, Name = "Book1" , Author = "Author1" , Pages=111 , Category=Category.Classics} ,
-                new Book { Id = 2, Name = "Book2" , Author = "Author2" , Pages=222 , Category=Category.Detective},
-                new Book { Id = 3, Name = "Book3" , Author = "Author3" , Pages=333 , Category=Category.Horror}
+                new Book { Id = 1, Name = "Book1" , Author = "Author1" , Pages=111 , Category=BooksCategory.Classics} ,
+                new Book { Id = 2, Name = "Book2" , Author = "Author2" , Pages=222 , Category=BooksCategory.Detective},
+                new Book { Id = 3, Name = "Book3" , Author = "Author3" , Pages=333 , Category=BooksCategory.Horror}
             };
 
         public IEnumerable<Book> GetAll()
@@ -28,14 +28,14 @@ namespace WebApplicationRazorLibrary.Services
         }
 
         // --- id is ignored , its self computed . using db you get id from there
-        public Book Add(Book book)
+        public Book AddBook(Book book)
         {
             book.Id = getUniqueId();
             m_books.Add(book);// --- add in the end
             return m_books.Last();
         }
 
-        public Book Get(long id)
+        public Book GetBook(long id)
         {
             // --- i provide reference to the repository but its non issue because its mock , in gebneral access to repo is only by API
             return m_books.FirstOrDefault(book => book.Id == id);
@@ -43,7 +43,7 @@ namespace WebApplicationRazorLibrary.Services
 
         
 
-        public Book Update(Book updatedBook)
+        public Book UpdateBook(Book updatedBook)
         {
             // --- i provide reference to the repository but its non issue because its mock , in gebneral access to repo is only by API
             int index = m_books.FindIndex(book => updatedBook.Id == book.Id);
@@ -56,9 +56,9 @@ namespace WebApplicationRazorLibrary.Services
             return null;
         }
 
-        public Book Delete(long id)
+        public Book DeleteBook(long id)
         {
-            Book book = Get(id);
+            Book book = GetBook(id);
             if (book != null)
             {
                 m_books.Remove(book);

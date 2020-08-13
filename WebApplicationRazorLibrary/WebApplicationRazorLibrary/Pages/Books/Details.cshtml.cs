@@ -13,16 +13,16 @@ namespace WebApplicationRazorLibrary.Pages.Books
 {
     public class DetailsModel : PageModel
     {
-        private IBooksRepository m_iBooksStorage;
+        private IBooksRepository m_booksRepo;
 
-        public DetailsModel(IBooksRepository iBooksStorage)
+        public DetailsModel(IBooksRepository booksRepo)
         {
-            m_iBooksStorage = iBooksStorage;
+            m_booksRepo = booksRepo;
         }
 
 
         // --- i do not want Details to be set outside of the class
-        public Book Details { get; private set; }
+        public Book Book { get; private set; }
 
         /*  
          * razor page MUST be decalred with @page "{id}"
@@ -31,8 +31,8 @@ namespace WebApplicationRazorLibrary.Pages.Books
          */
         public IActionResult OnGet(long id)
         {
-            Details = m_iBooksStorage.Get(id);
-            if(Details == null)
+            Book = m_booksRepo.GetBook(id);
+            if(Book == null)
             {
                return RedirectToPage("/NotFound");
             }

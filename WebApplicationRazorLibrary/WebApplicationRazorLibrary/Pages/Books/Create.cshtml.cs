@@ -12,25 +12,25 @@ namespace WebApplicationRazorLibrary.Pages.Books
 {
     public class CreateModel : PageModel
     {
-        IBooksRepository m_iBooksStorage;
+        IBooksRepository m_booksRepo;
 
         // --- i do not want Book to be set outside of the class
         public Book Book { get; private set; }
 
-        public CreateModel(IBooksRepository iBooksStorage)
+        public CreateModel(IBooksRepository booksRepo)
         {
-            m_iBooksStorage = iBooksStorage;
+            m_booksRepo = booksRepo;
         }
 
         public IActionResult OnPost(Book book)
         {
             if (ModelState.IsValid)
             {
-                m_iBooksStorage.Add(book);
+                m_booksRepo.AddBook(book);
                 return RedirectToPage("/Books/Index");
             }
 
-            Book = book;
+            //Book = book; looks like it is not needed
             return Page();
         }
 

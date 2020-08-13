@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApplicationRazorLibrary.Logic
 {
-    public enum Category
+    public enum BooksCategory
     {
         Action,
         Classics,

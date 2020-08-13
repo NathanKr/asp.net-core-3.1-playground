@@ -21,14 +21,14 @@ namespace WebApplicationRazorLibrary.Services
 
         
 
-        public Book Add(Book book)
+        public Book AddBook(Book book)
         {
             m_dbContext.Books.Add(book);
             m_dbContext.SaveChanges();
             return book;//todo nath is id changed ????
         }
 
-        public Book Delete(long id)
+        public Book DeleteBook(long id)
         {
             Book book = m_dbContext.Books.Find(id);
             if(book != null)
@@ -39,7 +39,7 @@ namespace WebApplicationRazorLibrary.Services
             return book;
         }
 
-        public Book Get(long id)
+        public Book GetBook(long id)
         {
             return m_dbContext.Books.Find(id);
         }
@@ -49,7 +49,7 @@ namespace WebApplicationRazorLibrary.Services
             return m_dbContext.Books;
         }
 
-        public Book Update(Book updateBook)
+        public Book UpdateBook(Book updateBook)
         {
             if (m_dbContext.Books.Find(updateBook.Id) != null)
             {
