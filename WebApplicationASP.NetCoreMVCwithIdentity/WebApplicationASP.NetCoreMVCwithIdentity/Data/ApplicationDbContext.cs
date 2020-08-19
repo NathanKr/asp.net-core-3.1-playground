@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebApplicationASP.NetCoreMVCwithIdentity.Models;
 
 namespace WebApplicationASP.NetCoreMVCwithIdentity.Data
 {
@@ -12,5 +13,6 @@ namespace WebApplicationASP.NetCoreMVCwithIdentity.Data
             : base(options)
         {
         }
+        public DbSet<WebApplicationASP.NetCoreMVCwithIdentity.Models.Book> Book { get; set; }
     }
 }
